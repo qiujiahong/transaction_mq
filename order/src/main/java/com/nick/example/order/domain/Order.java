@@ -13,7 +13,12 @@ public class Order {
     @GeneratedValue
     private Long id;
 
+    private String uuid;
+    private Long customerId;    //订单谁发起的
+
     private String title;
-    private String detail;
+    private Long ticketNum;     //订单是买的那一张票
     private int amount;
+    private String status;
+    private String reason;      //订单出错原因
 }

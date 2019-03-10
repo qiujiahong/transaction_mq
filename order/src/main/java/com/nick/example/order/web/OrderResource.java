@@ -15,16 +15,6 @@ import java.util.Optional;
 @RequestMapping("/api/order")
 public class OrderResource implements IOrderService {
 
-    @PostConstruct
-    public void init() {
-        Order order = new Order();
-        order.setTitle("My order");
-        order.setDetail("This is my order");
-        order.setAmount(100);
-        orderRepository.save(order);
-
-    }
-
     @Autowired
     OrderRepository orderRepository;
 
@@ -46,7 +36,6 @@ public class OrderResource implements IOrderService {
             OrderDTO dto = new OrderDTO();
             dto.setId(order.getId());
             dto.setTitle(order.getTitle());
-            dto.setDetail(order.getDetail());
             return dto;
         }
         else

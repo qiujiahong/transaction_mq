@@ -23,5 +23,16 @@ public class Customer {
 
     private String role;
 
+    private int deposit;    //余额分
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", deposit=" + deposit +
+                '}';
+    }
 }

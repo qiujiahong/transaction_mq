@@ -2,9 +2,13 @@ package com.nick.example.dto;
 
 public class OrderDTO {
     private Long id;
+    private String uuid;
+    private Long customerId;
     private String title;
-    private String detail;
+    private Long ticketNum;
     private int amount;
+
+    private String status;
 
     public Long getId() {
         return id;
@@ -22,19 +26,57 @@ public class OrderDTO {
         this.title = title;
     }
 
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
     public int getAmount() {
         return amount;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public Long getTicketNum() {
+        return ticketNum;
+    }
+
+    public void setTicketNum(Long ticketNum) {
+        this.ticketNum = ticketNum;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "OrderDTO{" +
+                "id=" + id +
+                ", uuid='" + uuid + '\'' +
+                ", customerId=" + customerId +
+                ", title='" + title + '\'' +
+                ", ticketNum=" + ticketNum +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
