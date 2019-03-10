@@ -1,0 +1,25 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: proxy
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://nick:123456@localhost:8761/eureka/
+
+zuul:
+  routes:
+    userApi:
+      path: /home/**
+      serviceId: user
+      stripPrefix: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
