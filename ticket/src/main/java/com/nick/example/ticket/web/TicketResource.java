@@ -35,7 +35,12 @@ public class TicketResource  {
 
     @PostMapping("/lock")
     public Ticket lock(@RequestBody  OrderDTO orderDTO){
-         return ticketService.ticketLock(orderDTO);
+        return ticketService.ticketLock(orderDTO);
+    }
+
+    @PostMapping("/lock2")
+    public int lock2(@RequestBody  OrderDTO orderDTO){
+        return ticketService.ticketLock2(orderDTO);
     }
 
 }

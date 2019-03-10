@@ -35,4 +35,17 @@ public class TicketService {
         }
         return ticket;
     }
+
+    @Transactional
+    public int ticketLock2(OrderDTO dto){
+        int lockCount = ticketRepository.lockTicket(dto.getCustomerId(),dto.getTicketNum());
+        log.info("update ticket lock count :{}",lockCount);
+        try {
+            Thread.sleep(10*1000);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage(),e);
+        }
+        return lockCount;
+
+    }
 }
