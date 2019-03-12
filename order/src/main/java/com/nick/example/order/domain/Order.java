@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.ZonedDateTime;
 
 @Data
 @Entity(name = "customer_order")
@@ -21,4 +22,21 @@ public class Order {
     private int amount;
     private String status;
     private String reason;      //订单出错原因
+
+    private ZonedDateTime createdDate;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", uuid='" + uuid + '\'' +
+                ", customerId=" + customerId +
+                ", title='" + title + '\'' +
+                ", ticketNum=" + ticketNum +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                ", reason='" + reason + '\'' +
+                ", createdDate=" + createdDate +
+                '}';
+    }
 }

@@ -7,6 +7,7 @@ import com.nick.example.ticket.domain.Ticket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +18,21 @@ public class TicketService {
     @Autowired
     TicketRepository ticketRepository;
 
+    @Autowired
+    JmsTemplate jmsTemplate;
+
     @JmsListener(destination = "order:new",containerFactory = "msgFactory")
     public void handleTicketLock(OrderDTO dto){
         log.info("Got new order for ticket lock: {}",dto);
+        int lockCount = ticketRepository.lockTicket(dto.getCustomerId(),dto.getTicketNum());
+        if(lockCount == 1){
+            dto.setStatus("TICKET_LOCKED");
+            //https://github.com/qiujiahong/transaction_mq/blob/master/docs/assets/2019-03-10-14-26-51.png
+            //下面到 order服务创建订单操作
+            jmsTemplate.convertAndSend("order:locked",dto);
+        }else {//锁票失败
+
+        }
 
     }
 
